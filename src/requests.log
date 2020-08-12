@@ -1,0 +1,12 @@
+08/04/2020 10:54:49 PM Running application with local development server!
+08/04/2020 10:54:49 PM  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+08/04/2020 10:54:53 PM 127.0.0.1 - - [04/Aug/2020 22:54:53] "[31m[1mPOST /webservice/produto HTTP/1.1[0m" 400 -
+08/04/2020 10:54:59 PM 127.0.0.1 - - [04/Aug/2020 22:54:59] "[31m[1mPOST /webservice/produto HTTP/1.1[0m" 400 -
+08/04/2020 10:55:07 PM Running application with local development server!
+08/04/2020 10:55:07 PM  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+08/04/2020 10:55:11 PM 127.0.0.1 - - [04/Aug/2020 22:55:11] "[31m[1mPOST /webservice/produto HTTP/1.1[0m" 400 -
+08/04/2020 10:55:35 PM Running application with local development server!
+08/04/2020 10:55:35 PM  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+08/04/2020 10:55:37 PM 127.0.0.1 - - [04/Aug/2020 22:55:37] "[31m[1mPOST /webservice/produto HTTP/1.1[0m" 400 -
+08/04/2020 10:55:44 PM 127.0.0.1 - - [04/Aug/2020 22:55:44] "[31m[1mPOST /webservice/produto HTTP/1.1[0m" 400 -
+08/04/2020 10:55:56 PM 127.0.0.1 - - [04/Aug/2020 22:55:56] "[31m[1mPOST /webservice/produto HTTP/1.1[0m" 400 -
