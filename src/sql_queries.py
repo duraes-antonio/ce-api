@@ -1,3 +1,20 @@
+def sql_estatisticas() -> str:
+    return f"""
+        SELECT
+            tb_total.qtd AS qtd_total_produtos,
+            tb_total.preco AS valor_total_produtos,
+            tb_total.preco / tb_total.qtd AS valor_medio_produtos
+        FROM
+        (
+            SELECT
+                SUM(pedido.product_qty) AS qtd,	
+                SUM(pedido.product_gross_revenue) AS preco
+            FROM wp_wc_order_product_lookup AS pedido
+         ) AS tb_total
+        """
+
+
+
 def sql_produto_find() -> str:
     return f"""
         SELECT

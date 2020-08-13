@@ -8,7 +8,8 @@ from config_bd import conf
 from sql_queries import *
 
 app = Flask(__name__)
-api_rota = '/webservice/produto'
+api_rota_produto = '/webservice/produto'
+api_rota_estatisticas = '/webservice/stats'
 conn = pymysql.connect(**conf)
 cursor = conn.cursor()
 
@@ -48,8 +49,8 @@ def validar_produto_lancar_erro(**produto):
         abort(Response(f'Os seguintes campos não podem ser negativos: {propriedades_texto}', 400))
 
 
-@app.route(f'{api_rota}/<int:id>', methods=['DELETE'])
-def delete(id: int):
+@app.route(f'{api_rota_produto}/<int:id>', methods=['DELETE'])
+def produto_delete(id: int):
     validar_id_lancar_erro(id)
 
     try:
@@ -61,8 +62,8 @@ def delete(id: int):
         abort(Response(e.__doc__ + str(e), 500))
 
 
-@app.route(api_rota, methods=['GET'])
-def get():
+@app.route(api_rota_produto, methods=['GET'])
+def produto_get():
     try:
         cursor.execute(sql_produto_find())
         return json.dumps(cursor.fetchall(), default=dec_serializer)
@@ -71,8 +72,8 @@ def get():
         abort(Response(e.__doc__ + str(e), 500))
 
 
-@app.route(f'{api_rota}/<int:id>', methods=['GET'])
-def get_by_id(id: int):
+@app.route(f'{api_rota_produto}/<int:id>', methods=['GET'])
+def produto_get_by_id(id: int):
     validar_id_lancar_erro(id)
 
     try:
@@ -83,8 +84,8 @@ def get_by_id(id: int):
         abort(Response(e.__doc__ + str(e), 500))
 
 
-@app.route(f'{api_rota}/<int:id>', methods=['PUT'])
-def put(id: int):
+@app.route(f'{api_rota_produto}/<int:id>', methods=['PUT'])
+def produto_put(id: int):
     # Valide o ID e a entrada
     entrada: dict = json.loads(request.data.decode('utf-8'))
     validar_id_lancar_erro(id)
@@ -117,8 +118,8 @@ def put(id: int):
         abort(Response(e.__doc__ + str(e), 500))
 
 
-@app.route(api_rota, methods=['POST'])
-def post():
+@app.route(api_rota_produto, methods=['POST'])
+def produto_post():
     entrada: dict = json.loads(request.data.decode('utf-8'))
     validar_produto_lancar_erro(**entrada)
 
@@ -142,6 +143,16 @@ def post():
     # Em caso de erro, reverta todos inserts
     except Exception as e:
         conn.rollback()
+        abort(Response(e.__doc__ + str(e), 500))
+
+
+@app.route(api_rota_estatisticas, methods=['GET'])
+def estatisticas_get():
+    try:
+        cursor.execute(sql_estatisticas())
+        return json.dumps(cursor.fetchone(), default=dec_serializer)
+
+    except Exception as e:
         abort(Response(e.__doc__ + str(e), 500))
 
 
