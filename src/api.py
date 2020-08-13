@@ -34,7 +34,8 @@ def validar_produto_lancar_erro(**produto):
         abort(Response('O produto de entrada não pode ser nulo', 400))
 
     # verifique se todas propriedades estão preenchidas
-    nome_props_nulas = [c for c in chaves_obrigatorias if c not in produto]
+    nome_props_nulas = [c for c in chaves_obrigatorias
+                        if c not in produto or not str(produto[c]).strip()]
 
     if nome_props_nulas:
         propriedades_texto = ', '.join(nome_props_nulas)

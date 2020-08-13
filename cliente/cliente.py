@@ -20,7 +20,7 @@ def formatar_saida_prod(**produto) -> str:
     return produto_str
 
 def formatar_erro(err: requests.Response) -> str:
-    return f"#ERRO: {err.content.decode('utf8')}"
+    return f"#ERRO - {err.status_code}: {err.content.decode('utf8')}"
 
 
 def listar_produtos(api_url_prod: str):
