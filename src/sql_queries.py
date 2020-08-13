@@ -39,9 +39,14 @@ def sql_produto_find_by_id(id: int) -> str:
     return f"""{sql_produto_find()} AND ID = {id}"""
 
 
-def sql_produto_delete(id: int) -> str:
+def sql_produto_delete_nome_desc(id: int) -> str:
     return f"""
-        DELETE FROM wp_wc_product_meta_lookup WHERE product_id = {id};
+        DELETE FROM wp_posts WHERE ID = {id};
+        """
+
+def sql_produto_delete_preco_qtd(id: int) -> str:
+    return f"""
+        DELETE FROM wp_postmeta WHERE post_id = {id};
         """
 
 

@@ -1,7 +1,6 @@
 import decimal
 import json
 import pymysql
-
 from flask import Flask, request, abort, Response
 
 from config_bd import conf
@@ -54,11 +53,14 @@ def produto_delete(id: int):
     validar_id_lancar_erro(id)
 
     try:
-        cursor.execute(sql_produto_delete(id))
+        conn.begin()
+        cursor.execute(sql_produto_delete_nome_desc(id))
+        cursor.execute(sql_produto_delete_preco_qtd(id))
         conn.commit()
         return {}
 
     except Exception as e:
+        conn.rollback()
         abort(Response(e.__doc__ + str(e), 500))
 
 
