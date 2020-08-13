@@ -1,7 +1,9 @@
 import decimal
 import json
 import pymysql
+
 from flask import Flask, request, abort, Response
+
 from config_bd import conf
 from sql_queries import *
 
@@ -46,26 +48,27 @@ def validar_produto_lancar_erro(**produto):
         abort(Response(f'Os seguintes campos não podem ser negativos: {propriedades_texto}', 400))
 
 
-# TODO: Implementar
 @app.route(f'{api_rota}/<int:id>', methods=['DELETE'])
 def delete(id: int):
     validar_id_lancar_erro(id)
 
     try:
-        # TODO: Tratar existência do produto
         cursor.execute(sql_produto_delete(id))
         conn.commit()
         return {}
 
     except Exception as e:
-        raise e
+        abort(Response(e.__doc__ + str(e), 500))
 
 
-# TODO: Implementar
 @app.route(api_rota, methods=['GET'])
 def get():
-    cursor.execute(sql_produto_find())
-    return json.dumps(cursor.fetchall(), default=dec_serializer)
+    try:
+        cursor.execute(sql_produto_find())
+        return json.dumps(cursor.fetchall(), default=dec_serializer)
+
+    except Exception as e:
+        abort(Response(e.__doc__ + str(e), 500))
 
 
 @app.route(f'{api_rota}/<int:id>', methods=['GET'])
@@ -88,10 +91,6 @@ def put(id: int):
     validar_produto_lancar_erro(**entrada)
 
     try:
-        cursor.execute("SET NAMES 'utf8'")
-        cursor.execute("SET character_set_connection=utf8")
-        cursor.execute("SET character_set_client=utf8")
-        cursor.execute("SET character_set_results=utf8")
         # Inicie uma transação com o banco
         conn.begin()
 
