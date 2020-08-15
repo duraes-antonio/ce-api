@@ -1,8 +1,12 @@
 # 🌐 Integração de API com WooCommerce
 
+**Integrantes:**
+* Antônio Carlos Durães
+* Nicolas Sampaio
+
 A proposta deste repositório é o desenvolvimento de uma Interface de Programação de Aplicações (API) integrada ao banco de dados do Sistema de Gestão de Conteúdo (CMS) Wordpress e seu plugin para e-commerce / lojas virtuais, WooCommerce.
 
-Tecnologias
+**Tecnologias:**
 * Python 3.7 (Linguagem de programação escolhida)
 * Flask 1.1.2 (Framework web p/ construir API)
 * PyMySQL 0.10.0 (Driver para conexão e operações c/ MySQL)
