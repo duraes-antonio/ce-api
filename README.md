@@ -40,12 +40,12 @@ Configurações padrão do Banco de Dados:
 ### Executar API
 
 * Abra o terminal, Powershell ou CMD na pasta "src" do projeto;
-* Digite o comando "python api"* e dê ENTER
+* Digite o comando "python api.py"* e dê ENTER
 
 ### Executar cliente
 
 * Abra um **novo** terminal, Powershell ou CMD na pasta "src" do projeto;
-* Digite o comando "python cliente"* e dê ENTER
+* Digite o comando "python cliente.py"* e dê ENTER
 
 *Obs.: Substitua "python" por "python3" se seu S.O. for Linux
 
